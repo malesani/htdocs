@@ -62,18 +62,35 @@ class MvcController{
             );
 
             $responseDb = Dati::loginUtenteModel($datiController, "utenti");
-
+            var_dump($responseDb);
             if($responseDb["email"] == $_POST["email"] && $responseDb["password"] == $_POST["password"]){
 
                 header('location:index.php?action=utenti');
-
+                echo "giusto";
             }else{
 
                 header('location:index.php?action=errore');
-
+                echo "error";
             }
         }
     }
+
+    public function mostraUtentiController(){
+        $responseDb = Dati::mostraUtentiModel("utenti"); 
+        foreach($responseDb as $row=>$data){
+            echo
+           ' <tr>
+                <td>' . $data["nome"] . '</td>
+                <td>' . $data["email"] . '</td>
+                <td><button class="btn btn-succes">Modifica</button></td>
+                <td><button class="btn btn-danger">Cancella</button></td> 
+            </tr>';
+        }
+    }
+
 } 
+
+
+
 
 ?>

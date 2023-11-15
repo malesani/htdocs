@@ -34,7 +34,15 @@ class Dati extends Connection{
         $stmt -> execute();
 
         return $stmt -> fetch();
-        $stmt -> close();
+        $stmt->close();
+    }
+
+    public static function mostraUtentiModel($tabella){
+        $stmt = Connection::connect()->prepare("SELECT * FROM $tabella");
+        $stmt -> execute();
+
+        return $stmt->fetchAll();
+        $stmt->close(); 
     }
 
 

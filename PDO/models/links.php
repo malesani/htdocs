@@ -16,7 +16,7 @@ class pagine{
 
         }else if($links == 'ok'){
 
-            $moduloNav = 'views/modules/registration.php';
+            $moduloNav = 'views/modules/utenti.php';
 
         }else if($links == 'errore'){
 

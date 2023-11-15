@@ -3,7 +3,7 @@
 <form method="POST">
 
     <div class="form-group">
-        <label for="emai">Email</label>
+        <label for="email">Email</label>
         <input type="email" class="form-control" placeholder="la tua mail" name="email" aria-describedby="emailHelp">
 
     </div>
@@ -12,7 +12,7 @@
         <input type="password" class="form-control" placeholder="password" name="password">
     </div>
 
-    <button type="submit" class="btn btn-block btn-primary" name="login">Invia</button>
+    <button type="login" class="btn btn-block btn-primary" name="login">Invia</button>
 
 </form>
 

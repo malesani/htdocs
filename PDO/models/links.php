@@ -6,6 +6,7 @@ class pagine{
         if($links == "registration" || 
             $links == "login" || 
             $links == "utenti" ||
+            $links == "update" ||
             $links == "logout"){
                 $moduloNav = "views/modules/" . $links . ".php";
                
@@ -20,7 +21,12 @@ class pagine{
 
         }else if($links == 'errore'){
 
-            $moduloNav = 'views/modules/registration.php';
+            $moduloNav = 'views/modules/login.php';
+
+        
+        }else if($links == 'edit'){
+
+            $moduloNav = 'views/modules/utenti.php';
 
         }else{
 

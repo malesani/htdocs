@@ -1,3 +1,18 @@
+<?php
+
+    session_start();
+
+    if(!$_SESSION['validation']){
+        header('location:index.php?action=login');
+
+        exit();
+    }
+
+?>
+
+
+
+
 <h1>utente</h1>
 
 <table class="table table-striped">
@@ -15,6 +30,7 @@
             <?php
                 $mostraUtenti = new MvcController();
                 $mostraUtenti -> mostraUtentiController();
+                
             ?>
         </tr>
     </tbody>
@@ -24,7 +40,11 @@
 
 <?php
 
-    
+    if(isset($_GET['action'])){
+        if($_GET["action"] == 'edit'){
+            echo 'hai aggiornato i dati';
+        }
+    }
 
 
 ?>

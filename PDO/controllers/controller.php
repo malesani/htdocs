@@ -64,27 +64,85 @@ class MvcController{
             $responseDb = Dati::loginUtenteModel($datiController, "utenti");
             var_dump($responseDb);
             if($responseDb["email"] == $_POST["email"] && $responseDb["password"] == $_POST["password"]){
+                
+                session_start();
+                $_SESSION['validation'] = true;
 
                 header('location:index.php?action=utenti');
-                echo "giusto";
+             
             }else{
 
                 header('location:index.php?action=errore');
-                echo "error";
+            
             }
         }
     }
 
-    public function mostraUtentiController(){
+    public static function mostraUtentiController(){
         $responseDb = Dati::mostraUtentiModel("utenti"); 
         foreach($responseDb as $row=>$data){
             echo
            ' <tr>
                 <td>' . $data["nome"] . '</td>
                 <td>' . $data["email"] . '</td>
-                <td><button class="btn btn-succes">Modifica</button></td>
-                <td><button class="btn btn-danger">Cancella</button></td> 
+                <td><a href="index.php?action=update&id='.$data["id"].'">
+                        <button class="btn btn-succes">Modifica</button>
+                    </a>
+                </td>
+                <td>
+                    <button class="btn btn-danger">Cancella</button>
+                </td> 
             </tr>';
+        }
+    }
+
+    public static function modificaUtenteController(){
+        $datiController = $_GET["id"];
+        $responseDb = Dati::modificaUtenteModel($datiController, "utenti");
+        $id = $responseDb["id"];
+        $nome = $responseDb["nome"];
+        $email = $responseDb["email"];
+        $password = $responseDb["password"];
+
+        echo '
+            <div>
+                <input value="'.$id.'" name="idUtente" hidden> 
+                <label for="nome">Nome</label>
+                <input type="text" class="form-controll" name="nome" value="'.$nome.'">
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input type="email" class="form-controll" name="email" value="'.$email.'" aria-describedby="emailHelp">
+            </div>
+            <div>
+                <label for="password">password</label>
+                <input type="text" class="form-controll" name="password" value="'.$password.'">
+            </div>
+
+            <button type="submit" name="aggiorna" class="btn btn-block btn-primary">Invia</button>        
+        
+
+        ';
+    }
+
+
+    public function aggiornaUtenteController(){
+        if(isset($_POST['nome'])){
+            $datiController = array(
+                "id" => $_POST["idUtente"],
+                "nome" => $_POST["nome"],
+                "email" => $_POST["email"],
+                "password" => $_POST["password"]
+            );
+            
+            $responseDb = Dati::aggiornaUtenteModel($datiController, "utenti");
+            if($responseDb == 'successo'){
+
+                header('location: index.php?action=edit');
+            }else{
+                echo 'error';
+            }
+
         }
     }
 

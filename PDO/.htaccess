@@ -1,0 +1,3 @@
+#impedire l'indicizzazione delle mostre cartelle
+
+Options All -Indexes 

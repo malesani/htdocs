@@ -16,6 +16,7 @@
             $mvc -> linkPagineController();
         ?>
     </div>
+    <script src="./assets/js/validRegistration.js"></script>
 </body>
 </html>
 

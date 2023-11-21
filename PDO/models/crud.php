@@ -73,6 +73,20 @@ class Dati extends Connection{
 
     }
 
+    public static function cancellaUtenteModel($datiModel, $tabella){
+
+        $stmt = Connection::connect() -> prepare ("DELETE FROM $tabella WHERE id = :id");
+        $stmt -> bindParam(':id', $datiModel, PDO::PARAM_INT);
+
+        if($stmt -> execute()){
+            return 'successo';
+        }else{
+            return 'error';
+        }
+
+        $stmt -> close();
+
+    }
 
 } 
 

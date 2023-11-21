@@ -1,5 +1,7 @@
 <?php
 
+ob_start();
+
 class MvcController{
 
     public function pagina(){
@@ -28,10 +30,11 @@ class MvcController{
 
     public function registraUtenteController(){
         if(isset($_POST['submit'])){
+            $cripto = crypt($_POST["password"], "");
             $datiController = array(
                 "nome" => $_POST["nome"],
                 "email" => $_POST["email"],
-                "password" => $_POST["password"]
+                "password" => $cripto
             );
             
 
@@ -53,17 +56,17 @@ class MvcController{
 
     public function loginUtenteController(){
         if(isset($_POST['login'])){
-            
+            $cripto = crypt($_POST["password"], "");
             $datiController = array(
 
                 "email" => $_POST["email"],
-                "password" => $_POST["password"]
+                "password" => $cripto
 
             );
 
             $responseDb = Dati::loginUtenteModel($datiController, "utenti");
             var_dump($responseDb);
-            if($responseDb["email"] == $_POST["email"] && $responseDb["password"] == $_POST["password"]){
+            if($responseDb["email"] == $_POST["email"] && $responseDb["password"] == $cripto){
                 
                 session_start();
                 $_SESSION['validation'] = true;
@@ -90,7 +93,9 @@ class MvcController{
                     </a>
                 </td>
                 <td>
-                    <button class="btn btn-danger">Cancella</button>
+                    <a href="index.php?action=utenti&delete='.$data["id"].'">
+                        <button class="btn btn-danger">Cancella</button>
+                    </a>
                 </td> 
             </tr>';
         }
@@ -128,11 +133,12 @@ class MvcController{
 
     public function aggiornaUtenteController(){
         if(isset($_POST['nome'])){
+            $cripto = crypt($_POST["password"], "");
             $datiController = array(
                 "id" => $_POST["idUtente"],
                 "nome" => $_POST["nome"],
                 "email" => $_POST["email"],
-                "password" => $_POST["password"]
+                "password" => $cripto
             );
             
             $responseDb = Dati::aggiornaUtenteModel($datiController, "utenti");
@@ -143,6 +149,19 @@ class MvcController{
                 echo 'error';
             }
 
+        }
+    }
+
+    public function cancellaUtenteController(){
+        if(isset($_GET['delete'])){
+
+            $datiController = $_GET['delete'];
+
+            $responseDB = Dati::cancellaUtenteModel($datiController, 'utenti');
+
+            if($responseDB =="successo"){
+                header('location:index.php?action=utenti');
+            }
         }
     }
 

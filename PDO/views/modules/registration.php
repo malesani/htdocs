@@ -1,13 +1,10 @@
 <h2>REGISTRAZIONE</h2>
-<?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-?>
-<form method="post">
+
+<form method="post" onsubmit="return validRegistration()">
     <div class="form-group">
 
         <label for="nome">Nome</label>
-        <input type="text" class="form-control" placeholder="il tuo nome" name="nome" require>
+        <input id="nome" type="text" class="form-control" placeholder="il tuo nome" name="nome" require>
         
     </div>
 

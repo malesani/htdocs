@@ -11,8 +11,6 @@
 ?>
 
 
-
-
 <h1>utente</h1>
 
 <table class="table table-striped">
@@ -30,6 +28,7 @@
             <?php
                 $mostraUtenti = new MvcController();
                 $mostraUtenti -> mostraUtentiController();
+                $mostraUtenti -> cancellaUtenteController();
                 
             ?>
         </tr>

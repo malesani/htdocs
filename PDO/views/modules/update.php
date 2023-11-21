@@ -8,9 +8,6 @@
 
 ?>
 
-
-
-
 <h2 class="my-5">Aggiorna le informazioni</h2>
 <form method="post">
     <?php

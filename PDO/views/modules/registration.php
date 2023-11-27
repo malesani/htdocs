@@ -3,22 +3,21 @@
 <form method="post" onsubmit="return validRegistration()">
     <div class="form-group">
 
-        <label for="nome">Nome</label>
-        <input id="nome" type="text" class="form-control" placeholder="il tuo nome" name="nome" require>
+        <label for="nome"><span></span>Nome</label>
+        <input id="nome" type="text" class="form-control" placeholder="il tuo nome" name="nome" required>
         
     </div>
 
     <div class="form-group">
-        
-        <label for="email">Email</label>
-        <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="la tua mail" name="email" require>
+        <label for="email"><span></span>Email</label>
+        <input id="email" type="email" class="form-control" aria-describedby="emailHelp" placeholder="la tua mail" name="email" required>
     
     </div>
 
     <div class="form-group">
 
         <label for="password">Password</label>
-        <input type="password" class="form-control" placeholder="password" name="password" require>
+        <input type="password" class="form-control" placeholder="password" name="password" required>
 
     </div>
 

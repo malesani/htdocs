@@ -5,7 +5,6 @@ require_once 'connection.php';
 class Dati extends Connection{
 
     public static function registraUtenteModel($datiModel, $tabella){
-
         $stmt = Connection::connect() -> prepare("INSERT INTO $tabella(nome, email, password) VALUES(:nome, :email, :password)");
 
         $stmt -> bindParam(":nome", $datiModel['nome'], PDO::PARAM_STR);
@@ -16,17 +15,16 @@ class Dati extends Connection{
     
        if( $stmt -> execute()){
 
-        return "dati inseriti";
+            return "dati inseriti";
         
        }else{
 
-        return "errore";
+            return "errore";
         
        };
     }
 
     public static function loginUtenteModel($datiModel, $tabella){
-
         $stmt = Connection::connect() -> prepare("SELECT email,password FROM $tabella WHERE email = :email ");
 
         $stmt -> bindParam("email", $datiModel["email"], PDO::PARAM_STR);
@@ -74,7 +72,6 @@ class Dati extends Connection{
     }
 
     public static function cancellaUtenteModel($datiModel, $tabella){
-
         $stmt = Connection::connect() -> prepare ("DELETE FROM $tabella WHERE id = :id");
         $stmt -> bindParam(':id', $datiModel, PDO::PARAM_INT);
 
@@ -87,6 +84,24 @@ class Dati extends Connection{
         $stmt -> close();
 
     }
+
+    //Ajax : controllo input nome
+
+        public static function userValidationModel($datiModel, $tabella){
+            $stmt = Connection::connect() ->prepare("SELECT nome FROM $tabella WHERE nome = :nome");
+            $stmt -> bindParam(":nome", $datiModel, PDO::PARAM_STR);
+            $stmt -> execute();
+            return $stmt -> fetch();
+            $stmt -> close();
+        }
+
+        public static function mailValidationModel($datiModel, $tabella){
+            $stmt = Connection::connect() ->prepare("SELECT email FROM $tabella WHERE email = :email");
+            $stmt -> bindParam(":email", $datiModel, PDO::PARAM_STR);
+            $stmt -> execute();
+            return $stmt -> fetch();
+            $stmt -> close();
+        }
 
 } 
 

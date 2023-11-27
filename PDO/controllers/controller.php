@@ -165,9 +165,35 @@ class MvcController{
         }
     }
 
+     
+
+    
+
+    //ajax : user validatio
+    public static function userValidationController($validUser){
+        $datiController = $validUser;
+        $responseDB = Dati::userValidationModel($datiController, 'utenti');
+
+        if(!empty($responseDB['nome'])){
+            echo 0;
+        }else{
+            echo 1;
+        }
+    }
+
+    public static function mailValidationController($validMail){
+        $datiController = $validMail;
+        $responseDB = Dati::mailValidationModel($datiController, 'utenti');
+        if(!empty($responseDB['email'])){
+            echo 0;
+        }else{
+            echo 1;
+        }
+    }
+
 } 
 
 
 
 
-?>
+?> 

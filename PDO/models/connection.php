@@ -13,10 +13,10 @@
     $connection = new Connection();
     $link = $connection->connect();
     
-    if ($link) {
-        echo "Conexión exitosa";
-    } else {
-        echo "Error al conectar: " . $link->errorInfo()[2];
-    }
+    // if ($link) {
+    //     echo "Conexión exitosa";
+    // } else {
+    //     echo "Error al conectar: " . $link->errorInfo()[2];
+    // }
 
 ?>

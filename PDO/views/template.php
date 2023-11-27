@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>il mio MVC</title>
-</head>
-<body>
-    <?php
-        include 'modules/navigation.php'
-    ?>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <title>il mio MVC</title>
+    </head>
+    <body>
 
-    <div>
         <?php
-            $mvc = new MvcController();
-            $mvc -> linkPagineController();
+            include 'modules/navigation.php'
         ?>
-    </div>
-    <script src="./assets/js/validRegistration.js"></script>
-</body>
+
+        <div>
+            <?php
+                $mvc = new MvcController();
+                $mvc -> linkPagineController();
+            ?>
+        </div>
+
+        <script src="./assets/js/validRegistration.js"></script>
+        
+    </body>
 </html>
 
